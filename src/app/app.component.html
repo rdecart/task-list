@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="h2 col-xs-9">Task List</div>
+    <div class="h2 col-xs-3 text-right">
+      <button *ngIf="!newTaskOpen" class="btn btn-lg btn-success" (click)="openNewTaskPanel()"><span class="glyphicon glyphicon-plus"
+          aria-hidden="true"></span></button>
+    </div>
+  </div>
+  <div *ngIf="newTaskOpen" class="well new-task-panel">
+    <button type="button" class="close" aria-label="Close" (click)="closeNewTaskPanel()"><span aria-hidden="true">&times;</span></button>
+    <form [formGroup]="newTaskForm" (ngSubmit)="createTask()">
+      <label>
+        Title*:       
+      </label>
+      <input class="form-control" type="text" formControlName="title" required>
+      <br>
+      <label>
+        Description:
+      </label>
+      <textarea class="form-control" rows="4" type="text" formControlName="description"></textarea>
+      <br>
+      <div class="text-right">
+      <button class="btn" (click)="closeNewTaskPanel()">Cancel</button>&nbsp;
+      <button type="submit" class="btn" [disabled]="!newTaskForm.valid">Save</button>
+    </div>
+    </form>
+  </div>
+  <app-search  [showCompleted]="showCompleted" [showDeleted]="showDeleted" (searchTermChange)="searchTermChange($event)" (showCompletedChange)="showCompletedChange($event)" (showDeletedChange)="showDeletedChange($event)"></app-search>
+  <app-task-list [tasks]="tasks | async" [showCompleted]="showCompleted" [showDeleted]="showDeleted" (stateChange)="updateState($event)"></app-task-list>
+</div>

@@ -1,0 +1,16 @@
+<div class="form-group form-inline">
+  <div class="row">
+    <div class="col-xs-12 col-sm-7">
+      <label class="hidden-xs">Search</label>&nbsp;
+      <input class="form-control" type="text" [(ngModel)]="searchTerm" (ngModelChange)="searchUpdate()">
+      <button class="hidden-xs btn btn-default" (click)="resetSearch()">Reset</button>
+    </div>
+    <div class="col-xs-12 col-sm-5">
+      <label for="cb-show-completed">Show Completed</label>&nbsp;
+      <input id="cb-show-completed" type="checkbox" [checked]="showCompleted" (change)="toggleShowCompleted()" />
+      &nbsp;&nbsp;
+      <label for="cb-show-deleted">Show Deleted</label>&nbsp;
+      <input id="cb-show-deleted" type="checkbox" [checked]="showDeleted" (change)="toggleShowDeleted()" />
+    </div>
+  </div>
+</div>
